@@ -114,7 +114,7 @@ async def predict_diabetes_disease(input_data: DiabetesDataInput):
         db_prediction = diabetes_model.predict(d_input_features)
 
         # Return the prediction as a JSON response
-        return DiabetesDataOutput(risk_score=int(db_prediction[0]))
+        return db_prediction
     except:
         my_logger.error("Something went wrong!")
         return {"prediction": "error"}
