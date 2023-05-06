@@ -55,7 +55,7 @@ class HeartDataOutput(BaseModel):
 def load_model():
     global model, diabetes_model
     model = pickle.load(open("svm_model.pkl", "rb"))
-    diabetes_model = pickle.load(open("db_svm_model.pkl", "rb"))
+    diabetes_model = pickle.load(open("dbs_svm_model.pkl", "rb"))
     # diabetes_model = pickle.load(open("classifier_model.pkl", "rb"))
 
 # Define the prediction endpoint
@@ -63,6 +63,7 @@ def load_model():
 
 @app.post("/predict")
 async def predict_heart_disease(input_data: HeartDataInput):
+    print(input_data)
     try:
         # Convert the request body to a numpy array
         input_features = [[input_data.Thallium, input_data.Num_Vessels_Fluro, input_data.Exercise_Angina,
@@ -110,11 +111,13 @@ async def predict_diabetes_disease(input_data: DiabetesDataInput):
                              input_data.Irritability, input_data.Polydipsia, input_data.Itching,
                              input_data.Polyuria]]
 
+        print(input_data)
+
         # Use the SVM model to predict the heart disease risk
         db_prediction = diabetes_model.predict(d_input_features)
 
         # Return the prediction as a JSON response
-        return db_prediction
+        return DiabetesDataOutput(risk_score=int(db_prediction[0]))
     except:
         my_logger.error("Something went wrong!")
         return {"prediction": "error"}

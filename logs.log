@@ -28,3 +28,11 @@ DEBUG:h5py._conv:Creating converter from 7 to 5
 DEBUG:h5py._conv:Creating converter from 5 to 7
 DEBUG:h5py._conv:Creating converter from 7 to 5
 DEBUG:h5py._conv:Creating converter from 5 to 7
+ERROR:root:Something went wrong!
+ERROR:root:Something went wrong!
+ERROR:root:Something went wrong!
+ERROR:root:Something went wrong!
+ERROR:root:Something went wrong!
+ERROR:root:Something went wrong!
+ERROR:root:Something went wrong!
+ERROR:root:Something went wrong!
